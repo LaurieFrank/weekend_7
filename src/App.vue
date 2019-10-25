@@ -1,17 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>Harry Potter Characters</h1>
+    <hp-list-component :hpData="hpData"></hp-list-component>
+    <character-detail :character="selectedCharacter"></character-detail>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HpListComponent from "./components/HpListComponent.vue";
+import CharacterDetail from "./components/CharacterDetail.vue";
+import {eventBus} from "./main.js";
 
 export default {
   name: 'app',
+      data() {
+        return {
+          hpData: [],
+          selectedCharacter: null
+        }
+      },
+
+mounted(){
+  eventBus.$on("character-selected", (characer) => {
+    this.selectedCharacter = character;
+  })
+
+  fetch('http://hp-api.herokuapp.com/api/characters')
+  .then(response => response.json())
+  .then(hpData => this.harryPotterCharacters = hpData)
+  // .then(hpData => console.log(hpData))
+},
   components: {
-    HelloWorld
+    "hp-list-component": HpListComponent,
+    "character-detail": CharacterDetail
   }
 }
 </script>
