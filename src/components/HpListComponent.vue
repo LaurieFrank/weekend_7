@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <ul>
-      <list-item v-for="(hpData, index) in hpData" :hpData="hpData" :key="index"></list-item>
+      <list-item v-for="(character, index) in hpCharacters" :character="character" :key="index"></list-item>
     </ul>
   </div>
 </template>
@@ -10,8 +10,8 @@
 import ListItem from './ListItem.vue';
 
 export default {
-  name: 'hp-data',
-  props: ['hpData'],
+  name: 'hp-list-component',
+  props: ['hpCharacters'],
   components: {
     "list-item": ListItem
   }

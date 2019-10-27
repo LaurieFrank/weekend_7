@@ -1,14 +1,14 @@
 <template lang="html">
-  <div v-if="hpData">
-    <h3>{{hpdata.name}}</h3>
-    <p>Patronus: {{hpdata.patronus}}</p>
+  <div v-if="character">
+    <h3>{{character.name}}</h3>
+    <p>Patronus: {{character.patronus}}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "character-detail",
-  props: ["hpData"]
+  props: ["character"]
 }
 </script>
 

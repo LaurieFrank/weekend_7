@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Harry Potter Characters</h1>
-    <hp-list-component :hpData="hpData"></hp-list-component>
+    <hp-list-component :hpCharacters="hpCharacters"></hp-list-component>
     <character-detail :character="selectedCharacter"></character-detail>
   </div>
 </template>
@@ -15,20 +15,20 @@ export default {
   name: 'app',
       data() {
         return {
-          hpData: [],
+          hpCharacters: [],
           selectedCharacter: null
-        }
+        };
       },
 
 mounted(){
-  eventBus.$on("character-selected", (characer) => {
+  eventBus.$on("character-selected", (character) => {
     this.selectedCharacter = character;
   })
 
   fetch('http://hp-api.herokuapp.com/api/characters')
   .then(response => response.json())
-  .then(hpData => this.harryPotterCharacters = hpData)
-  // .then(hpData => console.log(hpData))
+  .then(hpCharacters => this.harryPotterCharacters = hpCharacters)
+  // .then(hpCharacters => console.log(hpCharacters))
 },
   components: {
     "hp-list-component": HpListComponent,
